@@ -174,7 +174,10 @@ function M.log(text, position)
     local filepath = vim.fn.expand('%:.')
     local line = position[1]
 
-    return string.format([[oconsole.log("LS -> %s:%s -> %s: ", %s)]], filepath,
+    -- Extract only the filename without the path
+    local filename = vim.fn.fnamemodify(filepath, ':t')
+
+    return string.format([[oconsole.log('🚀 -> %s:%s -> %s: ', %s)]], filename,
                          line, label, text)
 end
 
